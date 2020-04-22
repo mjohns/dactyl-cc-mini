@@ -368,10 +368,6 @@ int main() {
   }
 
   std::vector<Shape> negative_shapes;
-  // Cut off the parts sticking up into the thumb plate.
-  negative_shapes.push_back(d.key_backspace.GetTopLeft()
-                                .Apply(Cube(50, 50, 6).TranslateZ(3))
-                                .Color("red"));
 
   // Cut out holes for cords. Inserts can be printed to fit in.
   Shape connector_hole = Cube(10, 20, 10).TranslateZ(12 / 2);
