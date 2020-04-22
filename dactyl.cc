@@ -358,7 +358,8 @@ int main() {
 
     glm::vec3 screw_right_mid = d.key_ctrl.GetTopLeft().Apply(kOrigin);
     screw_right_mid.z = 0;
-    screw_right_mid.y += -.9;
+    screw_right_mid.x += 2;
+    screw_right_mid.y += -1.2;
 
     shapes.push_back(Union(screw_insert.Translate(screw_left_top),
                            screw_insert.Translate(screw_right_top),
