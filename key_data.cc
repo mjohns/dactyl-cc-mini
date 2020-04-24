@@ -182,9 +182,6 @@ KeyData::KeyData(TransformList key_origin) {
 
     k.SetParent(key_s);
     k.SetPosition(-20.887, -6.170, 5.358);
-
-    // ADJUSTMENT: move pinky down
-    k.t().y -= 9;
   });
 
   key_caps.Configure([&](Key& k) {
@@ -212,10 +209,6 @@ KeyData::KeyData(TransformList key_origin) {
   key_3.Configure([&](Key& k) {
     k.name = "3";
     k.SetParent(key_e);
-
-    // ADJUSTMENT
-    k.AddTransform();
-    k.t().z = 2;
   });
 
   key_c = GetRotatedKey(kDColumnRadius, false);
@@ -266,10 +259,6 @@ KeyData::KeyData(TransformList key_origin) {
   key_4.Configure([&](Key& k) {
     k.name = "4";
     k.SetParent(key_r);
-
-    // ADJUSTMENT
-    k.AddTransform();
-    k.t().z = 2;
   });
 
   key_v = GetRotatedKey(kFColumnRadius, false);
