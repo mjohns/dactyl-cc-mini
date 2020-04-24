@@ -19,7 +19,7 @@ Shape ConnectMainKeys(KeyData& d);
 
 int main() {
   TransformList key_origin;
-  key_origin.Translate(-20, -40, 3);
+  key_origin.Translate(-20, -40, 1);
 
   // This is where all of the logic to position the keys is done. Everything
   // below is cosmetic trying to build the case.
@@ -80,7 +80,7 @@ int main() {
   d.key_t.extra_width_right = 3;
   d.key_g.extra_width_right = 3;
 
-  for (Key* key : d.row(0)) {
+  for (Key* key : d.row(1)) {
     // top row
     if (key) {
       key->extra_width_top = 2;
@@ -130,22 +130,20 @@ int main() {
       TriFan(d.key_v.GetBottomLeft(),
              {
                  d.key_c.GetBottomRight(), d.key_left_arrow.GetTopRight(),
-                 d.key_left_arrow.GetBottomRight(), key_left_arrow_bottom_right,
-                 // d.key_backspace.GetTopLeft(),
-                 // d.key_v.GetBottomRight(),
-                 // d.key_v.GetBottomLeft(),
+                 d.key_left_arrow.GetBottomRight(),
+               //  key_left_arrow_bottom_right,
              }));
   shapes.push_back(
       TriFan(d.key_v.GetBottomLeft(), {
                                           d.key_c.GetBottomRight(),
                                           d.key_left_arrow.GetTopRight(),
                                           d.key_left_arrow.GetBottomRight(),
-                                          key_left_arrow_bottom_right,
+                                          //key_left_arrow_bottom_right,
                                       }));
   shapes.push_back(
       TriFan(d.key_backspace.GetTopLeft(), {
                                                d.key_backspace.GetBottomLeft(),
-                                               key_left_arrow_bottom_right,
+                                              d.key_left_arrow.GetBottomRight(),
                                                d.key_v.GetBottomLeft(),
                                                d.key_v.GetBottomRight(),
                                            }));
@@ -156,24 +154,13 @@ int main() {
       d.key_x.GetBottomRight(),
       d.key_c.GetBottomLeft(),
   }));
-  shapes.push_back(TriMesh({
-      d.key_q.GetTopLeft(),
-      d.key_q.GetBottomLeft(),
-      d.key_caps.GetTopRight(),
-      d.key_a.GetTopLeft(),
-  }));
-  shapes.push_back(TriMesh({
-      d.key_3.GetTopLeft(),
-      d.key_3.GetBottomLeft(),
-      d.key_w.GetTopRight(),
-      d.key_e.GetTopLeft(),
-  }));
-  shapes.push_back(TriMesh({
-      d.key_4.GetTopRight(),
-      d.key_4.GetBottomRight(),
-      d.key_t.GetTopLeft(),
-      d.key_r.GetTopRight(),
-  }));
+
+  shapes.push_back(
+      TriFan(d.key_x.GetBottomRight(), {
+                                           d.key_left_arrow.GetBottomLeft(),
+                                           d.key_z.GetBottomRight(),
+                                           d.key_x.GetBottomLeft(),
+                                       }));
 
   //
   // Make the wall
@@ -198,27 +185,21 @@ int main() {
     Direction right = Direction::RIGHT;
 
     std::vector<WallPoint> wall_points = {
-        // Start top left and go clockwise
-        {d.key_caps.GetTopLeft(), up},
-        {d.key_caps.GetTopRight().RotateFront(0, 0, 35), up},
-
-        {d.key_q.GetTopLeft(), left},
         {d.key_q.GetTopLeft(), up},
-        {d.key_q.GetTopRight().RotateFront(0, 0, 35), up, 1},
+        {d.key_q.GetTopRight(), up},
+        //{d.key_q.GetTopRight().RotateFront(0, 0, 35), up, 1},
 
-        {d.key_w.GetTopLeft(), left},
         {d.key_w.GetTopLeft(), up},
-        {d.key_w.GetTopRight().RotateFront(0, 0, 35), up, 1, .6},
+        {d.key_w.GetTopRight(), up},
+        //{d.key_w.GetTopRight().RotateFront(0, 0, 35), up, 1, .6},
 
-        {d.key_3.GetTopLeft(), left},
-        {d.key_3.GetTopLeft(), up},
-        {d.key_3.GetTopRight(), up},
+        {d.key_e.GetTopLeft(), up},
+        {d.key_e.GetTopRight(), up},
 
-        {d.key_4.GetTopLeft(), up},
-        {d.key_4.GetTopRight(), up},
-        {d.key_4.GetTopRight(), right},
+        {d.key_r.GetTopLeft(), up},
+        {d.key_r.GetTopRight(), up},
 
-        {d.key_t.GetTopLeft().RotateFront(0, 0, -35), up, 1, .3},
+        {d.key_t.GetTopLeft(), up},
         {d.key_t.GetTopRight(), up},
         {d.key_t.GetTopRight(), right},
 
@@ -241,25 +222,20 @@ int main() {
         {d.key_backspace.GetBottomLeft(), down},
         {d.key_backspace.GetBottomLeft(), left},
 
-        {key_left_arrow_bottom_right.RotateFront(0, 0, -70), down, 3, .7},
+        //{key_left_arrow_bottom_right.RotateFront(0, 0, -70), down, 3, .7},
+        {d.key_left_arrow.GetBottomRight(), down},
         {d.key_left_arrow.GetBottomLeft(), down},
-        {d.key_left_arrow.GetBottomLeft(), left},
 
-        {d.key_x.GetBottomRight().RotateFront(0, 0, -45), down, 1},
-        {d.key_x.GetBottomLeft().RotateFront(0, 0, 35), down},
-
-        {d.key_z.GetBottomRight(), right},
         {d.key_z.GetBottomRight(), down},
         {d.key_z.GetBottomLeft(), down},
+        {d.key_z.GetBottomLeft(), left},
+        {d.key_z.GetTopLeft(), left},
 
-        {d.key_shift.GetBottomRight(), down},
-        {d.key_shift.GetBottomLeft(), down},
+        {d.key_a.GetBottomLeft(), left},
+        {d.key_a.GetTopLeft(), left},
 
-        {d.key_shift.GetBottomLeft(), left},
-        {d.key_shift.GetTopLeft(), left},
-
-        {d.key_caps.GetBottomLeft(), left},
-        {d.key_caps.GetTopLeft(), left},
+        {d.key_q.GetBottomLeft(), left},
+        {d.key_q.GetTopLeft(), left},
     };
 
     std::vector<std::vector<Shape>> wall_slices;
@@ -336,14 +312,14 @@ int main() {
             .Subtract(Cylinder(screw_height + 2, screw_radius, 30))
             .TranslateZ(screw_height / 2);
 
-    glm::vec3 screw_left_bottom = d.key_shift.GetBottomLeft().Apply(kOrigin);
+    glm::vec3 screw_left_bottom = d.key_z.GetBottomLeft().Apply(kOrigin);
     screw_left_bottom.z = 0;
-    screw_left_bottom.x += 2.8;
+    screw_left_bottom.x += 3.3;
     screw_left_bottom.y += 1.7;
 
     glm::vec3 screw_left_top = d.key_q.GetTopLeft().Apply(kOrigin);
     screw_left_top.z = 0;
-    screw_left_top.x += 2.8;
+    screw_left_top.x += 3.3;
     screw_left_top.y += -1;
 
     glm::vec3 screw_right_top = d.key_t.GetTopRight().Apply(kOrigin);
@@ -371,13 +347,13 @@ int main() {
   std::vector<Shape> negative_shapes;
 
   // Cut out holes for cords. Inserts can be printed to fit in.
-  Shape connector_hole = Cube(10, 20, 10).TranslateZ(12 / 2);
-  glm::vec3 connector_location1 = d.key_4.GetTopLeft().Apply(kOrigin);
-  connector_location1.z = 6;
-  connector_location1.x += 9.75;
-  glm::vec3 connector_location2 = d.key_3.GetTopLeft().Apply(kOrigin);
-  connector_location2.z = 6;
-  connector_location2.x += 9.5;
+  Shape connector_hole = Cube(13, 20, 10).TranslateZ(12 / 2);
+  glm::vec3 connector_location1 = d.key_t.GetTopLeft().Apply(kOrigin);
+  connector_location1.z = 4;
+  connector_location1.x += 11.75;
+  glm::vec3 connector_location2 = d.key_r.GetTopLeft().Apply(kOrigin);
+  connector_location2.z = 4;
+  connector_location2.x += 10.5;
   negative_shapes.push_back(connector_hole.Translate(connector_location1));
   negative_shapes.push_back(connector_hole.Translate(connector_location2));
 

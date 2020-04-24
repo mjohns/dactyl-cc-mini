@@ -51,10 +51,10 @@ struct KeyData {
 
   // clang-format off
   const std::vector<std::vector<Key*>> grid = {
-    { nullptr,     nullptr,     nullptr,     &key_3,           &key_4,            nullptr},
+    { nullptr,     nullptr,     nullptr,     nullptr,          nullptr,           nullptr},
     { nullptr,     &key_q,      &key_w,      &key_e,           &key_r,            &key_t},
-    { &key_caps,   &key_a,      &key_s,      &key_d,           &key_f,            &key_g},
-    { &key_shift,  &key_z,      &key_x,      &key_c,           &key_v,            &key_b},
+    { nullptr,     &key_a,      &key_s,      &key_d,           &key_f,            &key_g},
+    { nullptr,     &key_z,      &key_x,      &key_c,           &key_v,            &key_b},
     { nullptr,     nullptr,     nullptr,     &key_left_arrow,  nullptr,           nullptr},
   };
   // clang-format on
