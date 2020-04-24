@@ -1,11 +1,12 @@
 # Dactyl CC Mini
 
+Work in Progress.
+
 A smaller version of the [Dactly CC keyboard](https://github.com/mjohns/dactyl-cc) with the following changes (besides key removal):
 
-* Pinky column moved down in the y direction.
 * Thumb end key removed and alt and home key moved down.
-* 3 and 4 key are shifted up in the z direction.
 * Thumb is moved in closer in the x direction.
+* Entire height is shifted down to keep it as low profile as possible.
 
 ![image](https://imgur.com/IP2UYYA.jpg)
 
