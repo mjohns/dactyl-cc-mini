@@ -8,15 +8,12 @@ A smaller version of the [Dactly CC keyboard](https://github.com/mjohns/dactyl-c
 * Thumb is moved in closer in the x direction.
 * Entire height is shifted down to keep it as low profile as possible.
 
-![image](https://imgur.com/IP2UYYA.jpg)
+![image](mini.png)
 
 ```
-// Build. Requires g++.
-./build.sh.
-
-// If changing files under util you must run a clean build.
-./build.sh --clean
-
-// To generate STL from command line:
-openscad -o things/left.stl out/left.scad
+cd build
+cmake ../src
+make && ./dactyl
 ```
+
+If you don't have cmake installed you can just run build/build_simple.sh but it is much slower especially for incremental compilations.
